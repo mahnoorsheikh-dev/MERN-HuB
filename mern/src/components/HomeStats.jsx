@@ -16,7 +16,7 @@ export default function HomeStats() {
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="bg-[#111827] p-6 rounded-2xl border border-[#2f3030] text-center"
+            className="bg-[#111827] p-6 rounded-2xl border border-[#2f3030] text-center text-white"
           >
             <h3 className="text-3xl font-bold text-[#00BFA6]">
               {stat.value}

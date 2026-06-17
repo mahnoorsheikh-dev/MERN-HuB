@@ -1,6 +1,7 @@
 import HomeCards from "../components/homeCards";
 import HomeAI from "../components/homeAI";
 import HomeHero from "../components/homeHero";
+import HomeStats from "../components/HomeStats";
 
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
         <HomeAI />
         </div>
       <HomeCards />
-      
+      <HomeStats /> 
       </div>
      </>
   );
