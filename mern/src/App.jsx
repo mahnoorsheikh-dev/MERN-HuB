@@ -9,6 +9,8 @@ import Roadmap from "./pages/Roadmap";
 import Projects from "./pages/Projects";
 import Topic from "./pages/Topic"; 
 import TopicDetails from "./pages/TopicDetail";
+import AIAssistant from "./pages/AIAssistant";
+
  
 
 
@@ -25,6 +27,7 @@ export default function App () {
       <Route path="/projects" element={<Projects />} />
       <Route path="/topic" element={<Topic />} />
       <Route path="/topics/:slug" element={<TopicDetails />} />
+      <Route path="/ai-assistant" element={<AIAssistant />} />
     </Routes>
     <Footer />
 

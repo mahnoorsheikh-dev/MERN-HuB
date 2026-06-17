@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function HomeAI() {
 
   return (
@@ -9,9 +11,13 @@ export default function HomeAI() {
           <p className="text-lg text-[#E0E0E0] text-center">
             Click your Chatbot helper.
           </p>
-          <a className="px-4 py-2 rounded-full bg-[#1E1E2F] hover:bg-[#00BFA6] hover:text-[#111827] cursor-pointer transition-colors items-center mt-6 flex justify-center" href="/chat">
-              Chat AI
-            </a>
+          <Link
+              to="/ai-assistant"
+              className="px-4 py-2 rounded-full bg-[#1E1E2F] hover:bg-[#00BFA6] hover:text-[#111827] mt-6 flex justify-center"
+        >
+          Chat AI
+         </Link>
+          
         </div>
 
         </>
