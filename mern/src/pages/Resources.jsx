@@ -1,7 +1,22 @@
 import { useState } from "react";
 import { resources } from "../data/resources";
 
-const categories = ["All", "JavaScript", "React", "Node.js", "Express.js", "MongoDB", "Next.js"];
+const categories = [
+   "All",
+   "JavaScript",
+   "React",
+   "Node.js",
+   "Express.js",
+   "MongoDB",
+   "Next.js",
+   "TypeScript",
+   "Tailwind CSS",
+   "Git & GitHub",
+   "JWT & Authentication",
+   "REST APIs",
+   "Deployment",
+
+  ];
 
 export default function Resources() {
   const [search, setSearch] = useState("");

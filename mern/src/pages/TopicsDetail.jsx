@@ -15,7 +15,7 @@ export default function TopicDetail() {
     return (
       <div className="min-h-screen bg-[#1E1E2F] text-white flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold text-[#00BFA6] mb-4">Topic Not Found</h1>
-        <Link to="/topic" className="px-6 py-3 bg-[#00BFA6] text-black rounded-xl font-semibold">
+        <Link to="/topics" className="px-6 py-3 bg-[#00BFA6] text-black rounded-xl font-semibold">
           Back to Topics
         </Link>
       </div>
@@ -28,7 +28,7 @@ export default function TopicDetail() {
 
         {/* Back Button */}
         <Link
-          to="/topic"
+          to="/topics"
           className="inline-block mb-6 text-sm text-[#888888] hover:text-[#00BFA6] transition-colors"
         >
           ← Back to Topics
