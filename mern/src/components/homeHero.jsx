@@ -9,10 +9,10 @@ export default function HomeHero() {
     year: "numeric",
   });
   const topics = [
-    { name: "MongoDB", href: "/topic" },
-    { name: "Express.js", href: "/topic" },
-    { name: "React.js", href: "/topic" },
-    { name: "Node.js", href: "/topic" },
+    { name: "MongoDB", href: "/topics" },
+    { name: "Express.js", href: "/topics" },
+    { name: "React.js", href: "/topics" },
+    { name: "Node.js", href: "/topics" },
   ];
 
   return (

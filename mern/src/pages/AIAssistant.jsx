@@ -15,27 +15,29 @@ export default function AIAssistant() {
     setLoading(true);
 
     try {
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": import.meta.env.VITE_ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true",
+          "Authorization": `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "claude-sonnet-4-6",
-          max_tokens: 1024,
-          system:
-            "You are a helpful assistant for MERN Hub, a learning platform for web developers. Help users learn JavaScript, React, Node.js, Express, MongoDB, and Next.js. Keep answers clear, beginner friendly, and practical.",
-          messages: updatedMessages,
+          model: "llama3-8b-8192",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are a helpful assistant for MERN Hub, a learning platform for web developers. Help users learn JavaScript, React, Node.js, Express, MongoDB, and Next.js. Keep answers clear, beginner friendly, and practical.",
+            },
+            ...updatedMessages,
+          ],
         }),
       });
 
       const data = await response.json();
       const aiMessage = {
         role: "assistant",
-        content: data.content[0].text,
+        content: data.choices[0].message.content,
       };
       setMessages([...updatedMessages, aiMessage]);
     } catch (error) {
@@ -45,7 +47,7 @@ export default function AIAssistant() {
           role: "assistant",
           content: "Something went wrong. Please try again.",
         },
-        alert("Error fetching AI response:", error),
+        alert("Error: " + error.message),
       ]);
     } finally {
       setLoading(false);

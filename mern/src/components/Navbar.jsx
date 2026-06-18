@@ -10,7 +10,7 @@ export default function Navbar() {
     { name: "Resources", href: "/resources" },
     { name: "Roadmap", href: "/roadmap" },
     { name: "Projects", href: "/projects" },
-    { name: "Topics", href: "/topic" },
+    { name: "Topics", href: "/topics" },
   ];
 
   return (
