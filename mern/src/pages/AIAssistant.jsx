@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function AIAssistant() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(() => {
+    const saved = localStorage.getItem("mernhub-chat");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("mernhub-chat", JSON.stringify(messages));
+  }, [messages]);
 
   const handleSubmit = async () => {
     if (!question.trim()) return;
@@ -22,12 +30,12 @@ export default function AIAssistant() {
           "Authorization": `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "llama3-8b-8192",
+          model: "llama-3.3-70b-versatile",
+          max_tokens: 1024,
           messages: [
             {
               role: "system",
-              content:
-                "You are a helpful assistant for MERN Hub, a learning platform for web developers. Help users learn JavaScript, React, Node.js, Express, MongoDB, and Next.js. Keep answers clear, beginner friendly, and practical.",
+              content: "You are MERN Bot, a helpful assistant for MERN Hub. Help users learn JavaScript, React, Node.js, Express, MongoDB, and Next.js. Keep answers clear and beginner friendly. Use markdown formatting in your responses.",
             },
             ...updatedMessages,
           ],
@@ -35,6 +43,11 @@ export default function AIAssistant() {
       });
 
       const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+
       const aiMessage = {
         role: "assistant",
         content: data.choices[0].message.content,
@@ -47,7 +60,6 @@ export default function AIAssistant() {
           role: "assistant",
           content: "Something went wrong. Please try again.",
         },
-        alert("Error: " + error.message),
       ]);
     } finally {
       setLoading(false);
@@ -61,6 +73,11 @@ export default function AIAssistant() {
     }
   };
 
+  const handleClear = () => {
+    setMessages([]);
+    localStorage.removeItem("mernhub-chat");
+  };
+
   return (
     <div className="min-h-screen bg-[#1E1E2F] text-white p-8">
       <h1 className="text-4xl font-bold text-[#00BFA6] text-center mb-2">
@@ -70,7 +87,18 @@ export default function AIAssistant() {
         Ask anything about JavaScript, React, Node.js, Express or MongoDB
       </p>
 
-      <div className="max-w-3xl mx-auto bg-[#111827] rounded-2xl border border-[#2f3030] flex flex-col h-150">
+      <div className="max-w-3xl mx-auto bg-[#111827] rounded-2xl border border-[#2f3030] flex flex-col h-[600px]">
+
+        {/* Header with clear button */}
+        <div className="flex justify-between items-center px-6 py-3 border-b border-[#2f3030]">
+          <span className="text-sm text-[#888888]">MERN Bot</span>
+          <button
+            onClick={handleClear}
+            className="text-xs text-[#888888] hover:text-red-400 transition-colors"
+          >
+            Clear Chat
+          </button>
+        </div>
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
@@ -91,7 +119,47 @@ export default function AIAssistant() {
                     : "bg-[#1E1E2F] text-[#E0E0E0] border border-[#2f3030] rounded-bl-none"
                 }`}
               >
-                {msg.content}
+                {msg.role === "assistant" ? (
+                  <ReactMarkdown
+                    components={{
+                      code: ({ children }) => (
+                        <code className="bg-[#111827] text-[#00BFA6] px-1 py-0.5 rounded text-xs font-mono">
+                          {children}
+                        </code>
+                      ),
+                      pre: ({ children }) => (
+                        <pre className="bg-[#111827] p-3 rounded-xl overflow-x-auto my-2 text-xs font-mono">
+                          {children}
+                        </pre>
+                      ),
+                      strong: ({ children }) => (
+                        <strong className="text-[#00BFA6] font-bold">{children}</strong>
+                      ),
+                      h1: ({ children }) => (
+                        <h1 className="text-lg font-bold text-[#00BFA6] mb-2">{children}</h1>
+                      ),
+                      h2: ({ children }) => (
+                        <h2 className="text-base font-bold text-[#00BFA6] mb-2">{children}</h2>
+                      ),
+                      h3: ({ children }) => (
+                        <h3 className="text-sm font-bold text-[#00BFA6] mb-1">{children}</h3>
+                      ),
+                      ul: ({ children }) => (
+                        <ul className="list-disc pl-4 my-2 flex flex-col gap-1">{children}</ul>
+                      ),
+                      ol: ({ children }) => (
+                        <ol className="list-decimal pl-4 my-2 flex flex-col gap-1">{children}</ol>
+                      ),
+                      p: ({ children }) => (
+                        <p className="mb-2">{children}</p>
+                      ),
+                    }}
+                  >
+                    {msg.content}
+                  </ReactMarkdown>
+                ) : (
+                  msg.content
+                )}
               </div>
             </div>
           ))}
