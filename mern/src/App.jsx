@@ -19,7 +19,8 @@ const AIAssistant = lazy(() => import("./pages/AIAssistant"));
 
 export default function App() {
   return (
-    <Router>
+    
+   <Router>
       <ScrollToTop />
       <Navbar />
       <Suspense fallback={<PageLoader />}>
