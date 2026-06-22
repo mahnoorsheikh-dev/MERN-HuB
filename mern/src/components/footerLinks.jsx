@@ -19,6 +19,7 @@ export default function FooterLinks() {
   ];
 
   return (
+    <>
     <div className="bg-[#1E1E2F] text-[#E0E0E0] border-t border-[#00BFA6]">
       <div className="max-w-6xl mx-auto px-6 md:px-16 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
 
@@ -71,5 +72,6 @@ export default function FooterLinks() {
       </div>
 
     </div>
+    </>
   );
 }
