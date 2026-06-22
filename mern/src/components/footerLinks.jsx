@@ -11,11 +11,11 @@ export default function FooterLinks() {
   ];
 
   const topicLinks = [
-    { name: "Node.js", href: "/topic" },
-    { name: "Express.js", href: "/topic" },
-    { name: "React.js", href: "/topic" },
-    { name: "MongoDB", href: "/topic" },
-    { name: "JavaScript", href: "/topic" },
+    { name: "Node.js", href: "/topics" },
+    { name: "Express.js", href: "/topics" },
+    { name: "React.js", href: "/topics" },
+    { name: "MongoDB", href: "/topics" },
+    { name: "JavaScript", href: "/topics" },
   ];
 
   return (
