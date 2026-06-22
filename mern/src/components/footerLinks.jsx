@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Twitter, Github, Linkedin } from "lucide-react";
 
-export default function FooterLinks() {
+export default function footerLinks() {
   const links = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
