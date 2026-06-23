@@ -1,16 +1,36 @@
-# React + Vite
+# MERN Hub 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A frontend learning platform for MERN stack developers with topics, resources, project ideas, roadmap, and an AI assistant.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
+[https://mern-hub-mu.vercel.app/](https://mern-hub-mu.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Features
+- 12 Topics with real code examples
+- 54+ Curated Resources with category filters
+- 25+ Project Ideas with difficulty levels
+- AI Assistant powered by Groq (Llama 3.3)
+- MERN Stack Roadmap
+- Responsive design with Tailwind CSS
 
-## React Compiler
+##  Tech Stack
+- React.js
+- Tailwind CSS
+- React Router v6
+- Groq AI API
+- Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##  Run Locally
+git clone https://github.com/mahnoorsheikh-dev/MERN-HuB.git
+cd MERN-HuB/mern
+npm install
+npm run dev
 
-## Expanding the ESLint configuration
+##  Environment Variables
+Create a .env file in the mern folder:
+VITE_GROQ_API_KEY=your_groq_api_key
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##  Author
+Built by Mahnoor Sheikh
+GitHub: https://github.com/mahnoorsheikh-dev
+
